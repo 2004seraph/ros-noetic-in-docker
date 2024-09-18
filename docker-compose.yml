@@ -1,0 +1,31 @@
+version: "3"
+services:
+  cccyantop-ros:
+    container_name: "ros-noetic-dev-box"
+    build: .
+    environment:
+      - DISPLAY=${DISPLAY}
+      - ROS_HOSTNAME=localhost
+      - TURTLEBOT3_MODEL=waffle
+      - ROS_MASTER_URI=http://localhost:11311
+    volumes:
+      # Mount host X socket to container
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      # Mount host workdir to container so code changes immediately affect container
+      - .:/home/cccyan-ros/ros
+      - /dev/null:/home/cccyan-ros/ros/Dockerfile
+      - /dev/null:/home/cccyan-ros/ros/docker-compose.yml
+      - /dev/null:/home/cccyan-ros/ros/.dockerignore
+    network_mode: host
+    userns_mode: "host"
+    hostname: cccyantop
+    stdin_open: true
+    tty: true
+    privileged: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
