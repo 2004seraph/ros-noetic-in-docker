@@ -29,10 +29,14 @@ jobs:
         sudo nvidia-ctk runtime configure --runtime=docker &&
         sudo systemctl restart docker
 
-    - name: Xvfb
+    - name: Xvfb Virtual Display
       if: runner.os == 'Linux'
       run: |
         Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+
+    # Enable caching of Docker layers
+    - uses: satackey/action-docker-layer-caching@v0.0.11
+      continue-on-error: true
     
     - name: Build the Docker image
       run: sudo docker compose build
