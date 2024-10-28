@@ -34,8 +34,14 @@ jobs:
       run: |
         Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
     
-    - name: Build the Docker image
-      run: sudo docker compose build
+    # - name: Build the Docker image
+    #   run: sudo docker compose build
+    - uses: whoan/docker-build-with-cache-action@v5
+      with:
+        username: 2004seraph
+        password: "${{ secrets.GITHUB_TOKEN }}"
+        registry: docker.pkg.github.com
+        compose_file: docker-compose.yml
 
     - name: Run the Docker image
       run: |
