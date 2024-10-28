@@ -60,4 +60,4 @@ jobs:
       run: |
         shopt -s expand_aliases
         source start-command.sh
-        ros
+        ros-non-tty
