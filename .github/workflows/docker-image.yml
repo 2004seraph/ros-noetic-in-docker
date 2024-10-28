@@ -45,5 +45,6 @@ jobs:
 
     - name: Run the Docker image
       run: |
+        shopt -s expand_aliases
         source start-command.sh
         ros
