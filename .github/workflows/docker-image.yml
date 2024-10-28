@@ -42,4 +42,4 @@ jobs:
       run: sudo docker compose build
 
     - name: Run the Docker image
-      run: sudo docker compose up -d --no-recreate
+      run: sudo docker compose up -d --no-recreate --gpus all 
