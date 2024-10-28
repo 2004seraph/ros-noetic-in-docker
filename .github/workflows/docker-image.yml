@@ -40,7 +40,13 @@ jobs:
     - name: Xvfb Virtual Display
       if: runner.os == 'Linux'
       run: |
-        Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+        Xvfb :100 -screen 0 1024x768x24 > /dev/null 2>&1 &
+
+    - name: Set $DISPLAY
+      uses: myci-actions/export-env-var@<version>
+      with:
+        name: DISPLAY
+        value: :100.0
     
     - name: Build the Docker image
       run: sudo docker compose build
