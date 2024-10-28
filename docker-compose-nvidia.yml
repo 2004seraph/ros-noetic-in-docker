@@ -1,6 +1,6 @@
 version: "3"
 services:
-  ros:
+  ros-nvidia:
     container_name: "ros-noetic-dev-box"
     build: .
     environment:
@@ -22,3 +22,10 @@ services:
     stdin_open: true
     tty: true
     privileged: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
