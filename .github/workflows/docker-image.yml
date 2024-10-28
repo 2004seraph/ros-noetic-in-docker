@@ -38,9 +38,8 @@ jobs:
     #   run: sudo docker compose build
     - uses: whoan/docker-build-with-cache-action@v5
       with:
-        username: 2004seraph
-        password: "${{ secrets.GITHUB_TOKEN }}"
-        registry: docker.pkg.github.com
+        username: "${{ secrets.DOCKER_HUB_USERNAME }}"
+        password: "${{ secrets.DOCKER_HUB_PASSWORD }}"
         compose_file: docker-compose.yml
 
     - name: Run the Docker image
