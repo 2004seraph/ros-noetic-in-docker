@@ -34,13 +34,13 @@ jobs:
       run: |
         Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
     
-    # - name: Build the Docker image
-    #   run: sudo docker compose build
-    - uses: whoan/docker-build-with-cache-action@v5
-      with:
-        username: "${{ secrets.DOCKER_HUB_USERNAME }}"
-        password: "${{ secrets.DOCKER_HUB_PASSWORD }}"
-        compose_file: docker-compose.yml
+    - name: Build the Docker image
+      run: sudo docker compose build
+    # - uses: whoan/docker-build-with-cache-action@v5
+    #   with:
+    #     username: "${{ secrets.DOCKER_HUB_USERNAME }}"
+    #     password: "${{ secrets.DOCKER_HUB_PASSWORD }}"
+    #     compose_file: docker-compose.yml
 
     - name: Run the Docker image
       run: |
