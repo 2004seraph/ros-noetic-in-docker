@@ -38,4 +38,7 @@ jobs:
         Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
     
     - name: Build the Docker image
+      run: docker compose build
+
+    - name: Run the Docker image
       run: docker compose up -d --no-recreate
